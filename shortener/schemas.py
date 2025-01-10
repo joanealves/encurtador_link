@@ -1,4 +1,4 @@
-from ninja import ModelSchema
+from ninja import ModelSchema, Schema
 from datetime import timedelta
 from .models import Links
 
@@ -25,3 +25,9 @@ class LinkSchema(ModelSchema):
             expiration_time=int(instance.expiration_time.total_seconds() // 60) if instance.expiration_time else None,
             max_uniques_cliques=instance.max_uniques_cliques,
         )
+
+class UpdateLinkSchema(Schema):
+    redirect_link: str = None
+    token: str = None
+    max_uniques_cliques: int = None
+    active: bool = None
